@@ -17,6 +17,10 @@ export class MenuComponent {
     this.router.navigate(['/home']);
   }
 
+  customers(){
+    this.router.navigate(['/customers']);
+  }
+
   washing(){
     this.router.navigate(['/washing']);
   }
@@ -28,6 +32,12 @@ export class MenuComponent {
   material(){
     this.router.navigate(['/material']);
   }
+
+  employees(){
+    this.router.navigate(['/employees']);
+  }
+
+
 
   
   
