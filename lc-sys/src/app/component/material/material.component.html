@@ -1,0 +1,34 @@
+<h1><b>Solicitação de materiais</b></h1>
+
+
+
+<mat-form-field>
+  <mat-label>Selecione o setor :</mat-label>
+  <mat-select [formControl]="select" multiple>
+    <mat-select-trigger>
+      {{select.value?.[0] || ''}}
+      @if ((select.value?.length || 0) > 1) {
+        <span class="example-additional-selection">
+          (+{{(select.value?.length || 0) - 1}} {{select.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      }
+    </mat-select-trigger>
+    @for (select of selectList; track select) {
+  <mat-option [value]="select">{{select}}</mat-option>
+}
+  </mat-select>
+</mat-form-field>
+
+<section class="example-section" [formGroup]="toppings">
+  <h4>Selecione os Materiais :</h4>
+  <p><mat-checkbox formControlName="pano">Pano</mat-checkbox></p>
+  <p><mat-checkbox formControlName="cera">Cera</mat-checkbox></p>
+  <p><mat-checkbox formControlName="detergente">Detergente</mat-checkbox></p>
+</section>
+
+<section class="example-section" [formGroup]="toppings">
+  <h4>Suas escolhas :</h4>
+  {{toppings.value | json}}
+</section>
+<br><br><br><br>
+  <button>salvar</button>
