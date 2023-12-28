@@ -46,6 +46,16 @@ public class CustomerController {
     }
 
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Customer> update(@PathVariable(value = "id")  UUID id, @RequestBody Customer customer) {
+        Customer updatedCustomer = customerService.update(id, customer);
+
+        if (updatedCustomer != null) {
+            return ResponseEntity.ok(updatedCustomer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 }

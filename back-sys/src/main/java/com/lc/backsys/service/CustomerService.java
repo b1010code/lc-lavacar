@@ -9,4 +9,5 @@ public interface CustomerService {
     public Customer create(Customer customer);
     public List<Customer>findAll();
     public Customer findById(UUID id);
+    public Customer update(UUID id, Customer customer);
 }
