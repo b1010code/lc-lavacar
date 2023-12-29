@@ -9,9 +9,7 @@ interface Product {
 }
 
 @Component({
-  selector: 'app-cleaning',
-  standalone: true,
-  imports: [CommonModule,CurrencyPipe],
+  selector: 'app-cleaning',  
   templateUrl: './cleaning.component.html',
   styleUrl: './cleaning.component.scss'
 })

@@ -8,9 +8,7 @@ interface Product {
 }
 
 @Component({
-  selector: 'app-washing',
-  standalone: true,
-  imports: [CommonModule,CurrencyPipe],
+  selector: 'app-washing', 
   templateUrl: './washing.component.html',
   styleUrl: './washing.component.scss'
 })

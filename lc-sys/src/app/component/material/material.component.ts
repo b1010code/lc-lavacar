@@ -8,9 +8,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-material',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, MatCheckboxModule, JsonPipe, MatSelectModule, MatFormFieldModule],
+  selector: 'app-material',  
   templateUrl: './material.component.html',
   styleUrl: './material.component.scss'
 })

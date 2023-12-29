@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-menu',  
+  selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+  styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
   constructor(private router: Router){}
 
@@ -17,7 +16,7 @@ export class MenuComponent {
 
   customers(){
     this.router.navigate(['/customers']);
-  }  
+  }
 
   washing(){
     this.router.navigate(['/washing']);
@@ -29,14 +28,13 @@ export class MenuComponent {
 
   material(){
     this.router.navigate(['/material']);
-  } 
+  }
 
   employees(){
     this.router.navigate(['/employees']);
   }
 
+  ngOnInit(): void {
+  }
 
-
-  
-  
 }
