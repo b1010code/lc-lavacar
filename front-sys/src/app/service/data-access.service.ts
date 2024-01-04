@@ -11,22 +11,22 @@ export class DataAccessService {
   constructor(private http: HttpClient) { }
 
   getAllItems() {
-    return this.http.get(`${this.baseUrl}/api`);
+    return this.http.get(`${this.baseUrl}/customer/get`);
   }
 
   getItemById(id: number) {
-    return this.http.get(`${this.baseUrl}/api/${id}`);
+    return this.http.get(`${this.baseUrl}/customer/${id}`);
   }
 
   createItem(item: any) {
-    return this.http.post(`${this.baseUrl}/api`, item);
+    return this.http.post(`${this.baseUrl}/customer/save`, item);
   }
 
   updateItem(id: number, item: any) {
-    return this.http.put(`${this.baseUrl}/api/${id}`, item);
+    return this.http.put(`${this.baseUrl}/customer/${id}`, item);
   }
 
   deleteItem(id: number) {
-    return this.http.delete(`${this.baseUrl}/api/${id}`);        
+    return this.http.delete(`${this.baseUrl}/customer/${id}`);        
   }
 }
