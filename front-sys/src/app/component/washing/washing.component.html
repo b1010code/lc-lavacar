@@ -1,6 +1,9 @@
 <p>washing works!</p>
-
-
+<mat-form-field>
+    <label>Data - Hora:</label>
+<input matInput type="text"[(ngModel)]="currentDate" mask="00/00/0000 00:00">
+</mat-form-field>
+<br>
 <mat-form-field>
     <mat-label>Selecione o Cliente :</mat-label>
     <select matNativeControl [(ngModel)]="selectedCustomer" name="customer">
