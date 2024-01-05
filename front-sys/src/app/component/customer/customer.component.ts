@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Customer } from 'src/app/model/customer';
 import { DataAccessService } from 'src/app/service/data-access.service';
 import { catchError, tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
