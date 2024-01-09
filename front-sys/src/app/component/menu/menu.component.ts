@@ -37,6 +37,10 @@ export class MenuComponent {
     this.router.navigate(['/restaurant']);
   }
 
+  emplist(){
+    this.router.navigate(['/emplist']);
+  }
+
 
 
 }

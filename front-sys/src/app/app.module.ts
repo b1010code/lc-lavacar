@@ -16,6 +16,7 @@ import { CleaningComponent } from './component/cleaning/cleaning.component';
 import { RestaurantComponent } from './component/restaurant/restaurant.component';
 import { DataAccessService } from './service/data-access.service';
 import { CustomerComponent } from './component/customer/customer.component';
+import { EmployeeListComponent } from './component/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CustomerComponent } from './component/customer/customer.component';
     EmployeesComponent,   
     CleaningComponent,
     RestaurantComponent,
-    CustomerComponent
+    CustomerComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,

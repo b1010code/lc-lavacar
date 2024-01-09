@@ -1,21 +1,25 @@
+<div class="container-btn">
+  <button mat-button class="btn" (click)="emplist()">Lista de Funcionários</button>
+</div>
+
+
 <h1>Cadastro de Funcionários</h1>
 
-<!--
-<form [formGroup]="customerForm" (ngSubmit)="onSubmit()" *ngIf="customerForm">
+<form [formGroup]="emplyeeForm" (ngSubmit)="onSubmit()" *ngIf="emplyeeForm">
 
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
       <input matInput formControlName="name" (input)="onInputChange($event, 'name')" placeholder="Digite o nome">
-      <mat-error *ngIf="customerForm?.get('name')?.invalid && customerForm?.get('name')?.touched">
+      <mat-error *ngIf="emplyeeForm?.get('name')?.invalid && emplyeeForm?.get('name')?.touched">
         Nome é obrigatório
       </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="fill">
-      <mat-label>Tipo de Carro</mat-label>
-      <input matInput formControlName="typeCar" (input)="onInputChange($event, 'typeCar')" placeholder="Digite o tipo de carro">
-      <mat-error *ngIf="customerForm?.get('typeCar')?.invalid && customerForm?.get('typeCar')?.touched">
-        Tipo de Carro é obrigatório
+      <mat-label>Cargo</mat-label>
+      <input matInput formControlName="officce" (input)="onInputChange($event, 'officce')" placeholder="Digite o cargo">
+      <mat-error *ngIf="emplyeeForm?.get('officce')?.invalid && emplyeeForm?.get('officce')?.touched">
+        Cargo é obrigatório
       </mat-error>
     </mat-form-field>
   
@@ -23,4 +27,4 @@
         <button mat-raised-button color="primary" type="submit">Salvar</button>
       </div>
   </form>
-  -->
+  

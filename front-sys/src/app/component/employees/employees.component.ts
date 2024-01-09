@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { catchError, tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataAccessService } from 'src/app/service/data-access.service';
+import { EmployeeService } from 'src/app/service/employee.service';
 import { Employee } from 'src/app/model/employee';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -18,13 +19,11 @@ export class EmployeesComponent {
   form: any;
   
 
-  constructor(private formBuilder: FormBuilder, 
-    private snackBar: MatSnackBar, private dataAccessService:DataAccessService){
+  constructor(private formBuilder: FormBuilder, private router: Router,
+    private snackBar: MatSnackBar, private employeeService:EmployeeService){
     this.emplyeeForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      typeCar: ['', [Validators.required]],
-      color: ['', [Validators.required]],
-      licensePlate: ['', [Validators.required]],
+      officce: ['', [Validators.required]]      
     });
   }
 
@@ -35,8 +34,8 @@ export class EmployeesComponent {
 
   
 
-  salvarItem(customer: any): void {
-    this.dataAccessService.createItem(customer)
+  salvarItem(employee: any): void {
+    this.employeeService.createItem(employee)
       .pipe(
         tap((data: any) => {
           this.onSuccess();
@@ -58,6 +57,7 @@ export class EmployeesComponent {
       const formData = this.emplyeeForm.value;
       this.salvarItem(formData);
     }
+    console.log("ENVIOU OS DADOS :", this.emplyeeForm.valid );
   }
 
   private onSuccess() {
@@ -66,6 +66,10 @@ export class EmployeesComponent {
 
   private onError() {
     this.snackBar.open("Erro ao salvar.", '', { duration: 5000 });
+  }
+
+  emplist(){
+    this.router.navigate(['/emplist']);
   }
 
 }
