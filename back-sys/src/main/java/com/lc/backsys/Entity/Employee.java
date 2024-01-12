@@ -23,5 +23,5 @@ public class Employee {
     private String name;
 
     @NonNull
-    private String officce;
+    private String office;
 }
