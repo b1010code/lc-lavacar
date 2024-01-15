@@ -16,27 +16,27 @@ export class EmployeeListComponent implements OnInit {
 
   subscription: Subscription | undefined;
   displayedColumns: string[] = ['id', 'name', 'office'];
-  
+
   dataSource = new MatTableDataSource<Employee>([]);
 
- @ViewChild(MatInput, { static: true }) input: MatInput | undefined;
+  @ViewChild(MatInput, { static: true }) input: MatInput | undefined;
 
- applyFilter(event?: Event) {
+  applyFilter(event?: Event) {
     const filterValue = (event?.target as HTMLInputElement)?.value;
     this.dataSource.filter = filterValue ? filterValue.trim().toLowerCase() : '';
     console.log('Filtro aplicado:', filterValue);
   }
-  
+
   constructor(private employeeService: EmployeeService) { }
 
-  ngOnInit(): void {  
-   this.employeeService.getAllItems().subscribe((data: any) => {
-    this.employees = data;    
-    console.log("Funcionarios OK: ", data) 
-  });
+  ngOnInit(): void {
+    this.employeeService.getAllItems().subscribe((data: any) => {
+      this.employees = data;
+      console.log("Funcionarios OK: ", data)
+    });
   }
 
-  
+
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();

@@ -10,6 +10,7 @@ import { EmployeesComponent } from './component/employees/employees.component';
 import { RestaurantComponent } from './component/restaurant/restaurant.component';
 import { CustomerComponent } from './component/customer/customer.component';
 import { EmployeeListComponent } from './component/employee-list/employee-list.component';
+import { CustomerListComponent } from './component/customer-list/customer-list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },  
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'cleaning', component: CleaningComponent },
   { path: 'material', component: MaterialComponent },    
   { path: 'customer', component: CustomerComponent },
+  { path: 'cust-list', component: CustomerListComponent },
   { path: 'employees', component: EmployeesComponent },
   { path: 'emplist', component: EmployeeListComponent },
   { path: 'restaurant', component: RestaurantComponent },

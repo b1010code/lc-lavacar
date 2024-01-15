@@ -17,6 +17,7 @@ import { RestaurantComponent } from './component/restaurant/restaurant.component
 import { DataAccessService } from './service/data-access.service';
 import { CustomerComponent } from './component/customer/customer.component';
 import { EmployeeListComponent } from './component/employee-list/employee-list.component';
+import { CustomerListComponent } from './component/customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EmployeeListComponent } from './component/employee-list/employee-list.c
     CleaningComponent,
     RestaurantComponent,
     CustomerComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    CustomerListComponent
   ],
   imports: [
     BrowserModule,

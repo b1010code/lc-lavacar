@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DataAccessService } from 'src/app/service/data-access.service';
 import { catchError, tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -18,7 +19,7 @@ export class CustomerComponent {
   
 
   constructor(private formBuilder: FormBuilder, private dataAccessService: DataAccessService,
-    private snackBar: MatSnackBar){
+    private snackBar: MatSnackBar, private router:Router){
     this.customerForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       typeCar: ['', [Validators.required]],
@@ -48,6 +49,11 @@ export class CustomerComponent {
       .subscribe();
   }
 
+  custlist(){
+    this.router.navigate(['/cust-list'])
+  }
+
+
   ngOnInit() {
     
   }
@@ -66,5 +72,7 @@ export class CustomerComponent {
   private onError() {
     this.snackBar.open("Erro ao salvar.", '', { duration: 5000 });
   }
+
+ 
 
 }

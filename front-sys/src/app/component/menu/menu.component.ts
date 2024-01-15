@@ -17,6 +17,10 @@ export class MenuComponent {
     this.router.navigate(['/customer']);
   }  
 
+  custlist(){
+    this.router.navigate(['/cust-list']);
+  } 
+
   washing(){
     this.router.navigate(['/washing']);
   }
