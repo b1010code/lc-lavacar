@@ -5,6 +5,25 @@
 </mat-form-field>
 <br>
 <mat-form-field>
+    <mat-label>Tipo de Lavação</mat-label>
+    <mat-select [(ngModel)]="selectedWashing" name="washing">
+        <mat-option *ngFor="let washing of washes" [value]="washing.value">{{washing.viewValue}}</mat-option>
+    </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field>
+    <mat-label>Tipo de Automovel</mat-label>
+    <mat-select [(ngModel)]="selectedAuto" name="auto">
+        <mat-option *ngFor="let auto of autos" [value]="auto.valauto">{{auto.viewauto}}</mat-option>
+    </mat-select>
+</mat-form-field>
+<br>
+<!--
+<mat-form-field>
+    <input matInput type="text" [value]="selectedCustomer?.typeCar" placeholder="Tipo de carro">
+</mat-form-field>
+<br>-->
+<mat-form-field>
     <mat-label>Selecione o Funcionário :</mat-label>
     <select matNativeControl [(ngModel)]="selectedCustomer" name="employee">
         <option *ngFor="let emp of employee" [ngValue]="emp">{{ emp.name }}</option>

@@ -4,6 +4,16 @@ import { EmployeeService } from 'src/app/service/employee.service';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+interface washing {
+  value: string;
+  viewValue: string;
+}
+
+interface auto {
+  valauto: string;
+  viewauto: string;
+}
+
 
 @Component({
   selector: 'app-washing',
@@ -11,6 +21,20 @@ import { ptBR } from 'date-fns/locale';
   styleUrls: ['./washing.component.scss']
 })
 export class WashingComponent implements OnInit {
+  selectedWashing: string = '';
+  selectedAuto: string = '';
+
+  washes: washing[] = [
+    {value: 'washing-0', viewValue: 'Lavação Simples'},
+    {value: 'washing-1', viewValue: 'Lavação Premium'},   
+  ];
+
+  autos: auto[] = [
+    {valauto: 'auto-0', viewauto: 'Carro'},
+    {valauto: 'auto-1', viewauto: 'SUV'},   
+    {valauto: 'auto-2', viewauto: 'Camionete'},
+    {valauto: 'auto-3', viewauto: 'Moto'},
+  ];
 
   customer: any[] = [];
   employee: any[] = [];
