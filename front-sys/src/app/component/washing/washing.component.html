@@ -5,6 +5,13 @@
 </mat-form-field>
 <br>
 <mat-form-field>
+    <mat-label>Selecione o Funcionário :</mat-label>
+    <select matNativeControl [(ngModel)]="selectedCustomer" name="employee">
+        <option *ngFor="let emp of employee" [ngValue]="emp">{{ emp.name }}</option>
+    </select>
+</mat-form-field>
+<br>
+<mat-form-field>
     <mat-label>Selecione o Cliente :</mat-label>
     <select matNativeControl [(ngModel)]="selectedCustomer" name="customer">
         <option *ngFor="let cust of customer" [ngValue]="cust">{{ cust.name }}</option>

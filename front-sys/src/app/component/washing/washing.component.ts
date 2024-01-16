@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataAccessService } from 'src/app/service/data-access.service';
+import { EmployeeService } from 'src/app/service/employee.service';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -12,11 +13,15 @@ import { ptBR } from 'date-fns/locale';
 export class WashingComponent implements OnInit {
 
   customer: any[] = [];
+  employee: any[] = [];
+
   selectedCustomer: any = null;
+  selectedEmployee: any = null;
+  
   currentDate: string = '';
   currentTime: string = '';
 
-  constructor(private dataAccess: DataAccessService){
+  constructor(private dataAccess: DataAccessService, private employessService:EmployeeService){
     this.getCurrentTime();
   }
  
@@ -27,17 +32,29 @@ export class WashingComponent implements OnInit {
  
   ngOnInit(): void {
     this.getAllRegisters();
+    this.getAllEmployee();
   }
 
   getAllRegisters(){
     this.dataAccess.getAllItems().subscribe((data: any) => {
       this.customer = data;       
-      console.log("REGISTRADOS", data)
+      console.log("Clientes", data)
+    });
+  }
+
+  getAllEmployee(){
+    this.employessService.getAllItems().subscribe((data: any) => {
+      this.employee = data;       
+      console.log("Funcionários", data)
     });
   }
 
   onCustomerSelected(customer: any) {
     this.selectedCustomer = customer;
+  }
+
+  onEmployeeSelected(employee: any) {
+    this.selectedEmployee = employee;
   }
 
 }
