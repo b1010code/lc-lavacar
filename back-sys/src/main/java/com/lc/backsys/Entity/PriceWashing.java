@@ -12,16 +12,24 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "priceWashSimple")
-public class PriceWashSimple {
+@Document(collection = "priceWashing")
+public class PriceWashing {
     @Id
     private UUID id = UUID.randomUUID();
+
+    @NonNull
+    private WashingType washingType;
 
     @NonNull
     private VehicleType vehicleType;
 
     @NonNull
     private double price;
+
+    public enum WashingType {
+        WashingSimple,
+        WashingPremium
+    }
 
     public enum VehicleType {
         CAR,

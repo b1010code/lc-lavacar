@@ -1,6 +1,6 @@
 package com.lc.backsys.dto;
 
-import com.lc.backsys.Entity.PriceWashSimple;
+import com.lc.backsys.Entity.PriceWashing;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,11 +8,22 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class PriceWashSimpleDTO {
+public class PriceWashingDTO {
     private UUID id;
-    private PriceWashSimple.VehicleType vehicleType;
+    private PriceWashing.WashingType washingType;
+    private PriceWashing.VehicleType vehicleType;
     private double price;
 
+    public String getFormattedWashingType(){
+        switch (washingType) {
+            case WashingSimple:
+                return "LAVAÇÃO SIMPLES";
+            case WashingPremium:
+                return "LAVAÇÃO PREMIUM";
+            default:
+                return "";
+        }
+    }
 
     public String getFormattedVehicleType() {
         switch (vehicleType) {
