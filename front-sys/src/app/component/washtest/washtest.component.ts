@@ -8,7 +8,7 @@ import { WashingService } from 'src/app/service/washing.service';
 })
 export class WashtestComponent implements OnInit {
 
-  priceSimple: any[] = [];
+  autos: any[] = [];
 
   selectedService: any = null;
 
@@ -20,10 +20,8 @@ export class WashtestComponent implements OnInit {
 
   getAllPrices() {
     this.washingServive.getAllItems().subscribe((data: any) => {
-      this.priceSimple = data;
+      this.autos = data;
       console.log("Preços :", data)
     });
   }
-
-
 }

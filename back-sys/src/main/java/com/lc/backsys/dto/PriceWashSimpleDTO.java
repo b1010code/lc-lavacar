@@ -13,6 +13,22 @@ public class PriceWashSimpleDTO {
     private PriceWashSimple.VehicleType vehicleType;
     private double price;
 
+
+    public String getFormattedVehicleType() {
+        switch (vehicleType) {
+            case CAR:
+                return "CARRO";
+            case SUV:
+                return "SUV";
+            case TRUCK:
+                return "CAMIONETE";
+            case MOTORCYCLE:
+                return "MOTO";
+            default:
+                return "";
+        }
+    }
+
     public String getFormattedPrice() {
         return String.format("%.2f", price).replace(".", ",");
     }
