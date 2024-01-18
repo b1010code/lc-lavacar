@@ -1,0 +1,13 @@
+<mat-form-field>
+    <mat-label>Selecione o Serviço :</mat-label>
+    <select matNativeControl [(ngModel)]="selectedService" name="priceSimple">
+        <option *ngFor="let price of priceSimple" [ngValue]="price">{{ price.vehicleType}}</option>
+    </select>
+</mat-form-field>
+<br>
+<mat-form-field>
+    <input matInput type="text" [value]="selectedService?.formattedPrice" placeholder="Preço">
+</mat-form-field>
+<br>
+
+<br>

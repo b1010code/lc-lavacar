@@ -18,6 +18,8 @@ import { DataAccessService } from './service/data-access.service';
 import { CustomerComponent } from './component/customer/customer.component';
 import { EmployeeListComponent } from './component/employee-list/employee-list.component';
 import { CustomerListComponent } from './component/customer-list/customer-list.component';
+import { WashingService } from './service/washing.service';
+import { WashtestComponent } from './component/washtest/washtest.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { CustomerListComponent } from './component/customer-list/customer-list.c
     RestaurantComponent,
     CustomerComponent,
     EmployeeListComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    WashtestComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { CustomerListComponent } from './component/customer-list/customer-list.c
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [DataAccessService],
+  providers: [DataAccessService, WashingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

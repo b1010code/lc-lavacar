@@ -11,6 +11,7 @@ import { RestaurantComponent } from './component/restaurant/restaurant.component
 import { CustomerComponent } from './component/customer/customer.component';
 import { EmployeeListComponent } from './component/employee-list/employee-list.component';
 import { CustomerListComponent } from './component/customer-list/customer-list.component';
+import { WashtestComponent } from './component/washtest/washtest.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },  
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'washing', component: WashingComponent },
+  { path: 'washtest', component: WashtestComponent },
   { path: 'cleaning', component: CleaningComponent },
   { path: 'material', component: MaterialComponent },    
   { path: 'customer', component: CustomerComponent },
@@ -25,6 +27,7 @@ const routes: Routes = [
   { path: 'employees', component: EmployeesComponent },
   { path: 'emplist', component: EmployeeListComponent },
   { path: 'restaurant', component: RestaurantComponent },
+  
 ];
 
 @NgModule({
