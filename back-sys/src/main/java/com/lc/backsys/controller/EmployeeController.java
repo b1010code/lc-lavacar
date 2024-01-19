@@ -47,7 +47,6 @@ public class EmployeeController {
         }
     }
 
-
     @PutMapping("/update/{id}")
     public ResponseEntity<Employee> update(@PathVariable(value = "id")  UUID id, @RequestBody Employee employee) {
         Employee updatedEmployee = employeeService.update(id, employee);
