@@ -49,10 +49,6 @@ export class CustomerComponent {
       .subscribe();
   }
 
-  custlist(){
-    this.router.navigate(['/cust-list'])
-  }
-
 
   ngOnInit() {
     

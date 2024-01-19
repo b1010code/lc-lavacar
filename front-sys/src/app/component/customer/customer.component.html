@@ -3,40 +3,41 @@
 
 <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" *ngIf="customerForm">
 
-    <mat-form-field appearance="fill">
-      <mat-label>Nome</mat-label>
-      <input matInput formControlName="name" (input)="onInputChange($event, 'name')" placeholder="Digite o nome">
-      <mat-error *ngIf="customerForm?.get('name')?.invalid && customerForm?.get('name')?.touched">
-        Nome é obrigatório
-      </mat-error>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Tipo de Carro</mat-label>
-      <input matInput formControlName="typeCar" (input)="onInputChange($event, 'typeCar')" placeholder="Digite o tipo de carro">
-      <mat-error *ngIf="customerForm?.get('typeCar')?.invalid && customerForm?.get('typeCar')?.touched">
-        Tipo de Carro é obrigatório
-      </mat-error>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Cor</mat-label>
-      <input matInput formControlName="color" (input)="onInputChange($event, 'color')" placeholder="Digite a cor">
-      <mat-error *ngIf="customerForm?.get('color')?.invalid && customerForm?.get('color')?.touched">
-        Cor é obrigatória
-      </mat-error>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Placa</mat-label>
-      <input matInput formControlName="licensePlate" (input)="onInputChange($event, 'licensePlate')" placeholder="Digite a placa">
-      <mat-error *ngIf="customerForm?.get('licensePlate')?.invalid && customerForm?.get('licensePlate')?.touched">
-        Placa é obrigatória
-      </mat-error>
-    </mat-form-field>
-  
-    <div class="container">
-        <button mat-raised-button color="primary" type="submit">Salvar</button>
-      </div>
-  </form>
-  
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="name" (input)="onInputChange($event, 'name')" placeholder="Digite o nome">
+    <mat-error *ngIf="customerForm?.get('name')?.invalid && customerForm?.get('name')?.touched">
+      Nome é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de Carro</mat-label>
+    <input matInput formControlName="typeCar" (input)="onInputChange($event, 'typeCar')"
+      placeholder="Digite o tipo de carro">
+    <mat-error *ngIf="customerForm?.get('typeCar')?.invalid && customerForm?.get('typeCar')?.touched">
+      Tipo de Carro é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Cor</mat-label>
+    <input matInput formControlName="color" (input)="onInputChange($event, 'color')" placeholder="Digite a cor">
+    <mat-error *ngIf="customerForm?.get('color')?.invalid && customerForm?.get('color')?.touched">
+      Cor é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Placa</mat-label>
+    <input matInput formControlName="licensePlate" (input)="onInputChange($event, 'licensePlate')"
+      placeholder="Digite a placa">
+    <mat-error *ngIf="customerForm?.get('licensePlate')?.invalid && customerForm?.get('licensePlate')?.touched">
+      Placa é obrigatória
+    </mat-error>
+  </mat-form-field>
+
+  <div class="container">
+    <button mat-raised-button color="primary" type="submit">Salvar</button>
+  </div>
+</form>

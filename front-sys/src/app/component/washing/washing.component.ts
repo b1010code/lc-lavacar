@@ -4,6 +4,9 @@ import { EmployeeService } from 'src/app/service/employee.service';
 import { WashingService } from 'src/app/service/washing.service';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { catchError, tap } from 'rxjs';
 
 
 @Component({
@@ -18,30 +21,32 @@ export class WashingComponent implements OnInit {
   prices: any = {};
   datas: any[] = [];
 
-  selectedWashing: any = null;
-  selectedVehicle: any = null;
-  selectedPrice: any = null;
-
+ 
   customer: any[] = [];
   employee: any[] = [];
-  
-
   selectedCustomer: any = null;
   selectedEmployee: any = null;
-
   currentDate: string = '';
   currentTime: string = '';
+  washingForm!: FormGroup;
+
 
   constructor(private dataAccess: DataAccessService, private employessService: EmployeeService,
-    private washingService: WashingService) {
-    this.getCurrentTime();
-  }
-
-  getCurrentTime() {
-    const now = new Date();
-    this.currentDate = format(now, "dd/MM/yyyy HH:mm", { locale: ptBR });
-    console.log('currentDate:', this.currentDate);
-  }
+    private washingService: WashingService, private snackBar: MatSnackBar, private formBuilder: FormBuilder) {
+    
+    this.washingForm = this.formBuilder.group({
+      dateTime: [format(new Date(), "dd/MM/yyyy HH:mm", { locale: ptBR }), [Validators.required]],
+      employee:  ['', [Validators.required]],
+      washingType:  ['', [Validators.required]],
+      vehicleType:  ['', [Validators.required]],
+      price:  ['', [Validators.required]],
+      customer: ['', [Validators.required]],
+      typeCar: ['', [Validators.required]],
+      color: ['', [Validators.required]],
+      licensePlate: ['', [Validators.required]],
+      observations: ['', [Validators.required]],
+    });
+  } 
 
   ngOnInit(): void {
     this.getAllRegisters();
@@ -81,27 +86,67 @@ export class WashingComponent implements OnInit {
   }
 
   onWashingTypeChange() {
-    this.selectedVehicle = null;
-    this.selectedPrice = null;
-    console.log('Tipo de Lavação selecionado:', this.selectedWashing);
-  }
-  
-  onVehicleTypeChange() {
-    if (this.selectedWashing && this.selectedVehicle) {
-      this.selectedPrice = this.prices[this.selectedWashing][this.selectedVehicle];
-    } else {
-      this.selectedPrice = null;
-    }
-    console.log('Tipo de Veículo selecionado:', this.selectedVehicle);
-    console.log('Preço selecionado:', this.selectedPrice);
-  }
+    this.washingForm.get('vehicleType')?.reset(); 
+    this.washingForm.get('price')?.reset(); 
+    console.log('Tipo de Lavação selecionado:', this.washingForm.get('washingType')?.value);
+}
 
-  onCustomerSelected(customer: any) {
-    this.selectedCustomer = customer;
-  }
+onVehicleTypeChange() {
+    if (this.washingForm.get('washingType')?.value && this.washingForm.get('vehicleType')?.value) {
+        this.washingForm.get('price')?.setValue(
+            this.prices[this.washingForm.get('washingType')?.value][this.washingForm.get('vehicleType')?.value]
+        );
+    } else {
+        this.washingForm.get('price')?.reset();
+    }
+
+    console.log('Tipo de Veículo selecionado:', this.washingForm.get('vehicleType')?.value);
+    console.log('Preço selecionado:', this.washingForm.get('price')?.value);
+}
+
+onCustomerSelected(event: any) {
+  const selectedIndex = event.target.selectedIndex;
+  this.selectedCustomer = this.customer[selectedIndex];
+
+  this.washingForm.patchValue({
+    typeCar: this.selectedCustomer?.typeCar,
+    color: this.selectedCustomer?.color,
+    licensePlate: this.selectedCustomer?.licensePlate,
+  });
+}
 
   onEmployeeSelected(employee: any) {
     this.selectedEmployee = employee;
+  }
+
+  salvarItem(washing: any): void {
+    this.washingService.createItem(washing)
+      .pipe(
+        tap((data: any) => {
+          this.onSuccess();
+        }),
+        catchError((error: any) => {
+          this.onError();
+          throw error;
+        })
+      )
+      .subscribe();
+  }
+
+
+  onSubmit() {
+    if (this.washingForm.valid) {
+      const formData = this.washingForm.value;
+      this.salvarItem(formData);
+    }
+  }
+
+  private onSuccess() {
+    this.snackBar.open("Salvo com sucesso !", '', { duration: 3000 });
+  }
+
+  private onError() {
+    this.snackBar.open("Erro ao salvar.", '', { duration: 5000 });
   }
 
 }

@@ -34,7 +34,10 @@ public class Washing {
     private String vehicleType;
 
     @NonNull
-    private Double customer;
+    private Double price;
+
+    @NonNull
+    private String customer;
 
     @NonNull
     private String typeCar;
