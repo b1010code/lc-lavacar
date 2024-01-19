@@ -1,56 +1,59 @@
 <h1>Lavação</h1>
-<mat-form-field>
-    <label>Data - Hora:</label>
-    <input matInput type="text" [(ngModel)]="currentDate" mask="00/00/0000 00:00">
-</mat-form-field>
-<br>
-<mat-form-field>
-    <mat-label>Tipo de Lavação</mat-label>
-    <mat-select [(ngModel)]="selectedWashing" name="washing">
-        <mat-option *ngFor="let washing of washes" [value]="washing.value">{{washing.viewValue}}</mat-option>
-    </mat-select>
-</mat-form-field>
-<br>
-<mat-form-field>
-    <mat-label>Tipo de Automovel</mat-label>
-    <mat-select [(ngModel)]="selectedAuto" name="auto">
-        <mat-option *ngFor="let auto of autos" [value]="auto.valauto">{{auto.viewauto}}</mat-option>
-    </mat-select>
-</mat-form-field>
-<br>
-<!--
-<mat-form-field>
-    <input matInput type="text" [value]="selectedCustomer?.typeCar" placeholder="Tipo de carro">
-</mat-form-field>
-<br>-->
-<mat-form-field>
-    <mat-label>Selecione o Funcionário :</mat-label>
-    <select matNativeControl [(ngModel)]="selectedCustomer" name="employee">
-        <option *ngFor="let emp of employee" [ngValue]="emp">{{ emp.name }}</option>
-    </select>
-</mat-form-field>
-<br>
-<!--/////////////////////////////////////////////////////-->
-<mat-form-field>
-    <mat-label>Selecione o Cliente :</mat-label>
-    <select matNativeControl [(ngModel)]="selectedCustomer" name="customer">
-        <option *ngFor="let cust of customer" [ngValue]="cust">{{ cust.name }}</option>
-    </select>
-</mat-form-field>
-<br>
-<mat-form-field>
-    <input matInput type="text" [value]="selectedCustomer?.typeCar" placeholder="Tipo de carro">
-</mat-form-field>
-<br>
-<mat-form-field>
-    <input matInput type="text" [value]="selectedCustomer?.color" placeholder="Cor">
-</mat-form-field>
-<br>
-<mat-form-field>
-    <input matInput type="text" [value]="selectedCustomer?.licensePlate" placeholder="Placa">
-</mat-form-field>
-<br>
-<mat-form-field>
-    <mat-label>Observações :</mat-label>
-    <textarea matInput></textarea>
-</mat-form-field>
+<form>
+    <mat-form-field>
+        <label>Data - Hora:</label>
+        <input matInput type="text" [(ngModel)]="currentDate" name="currentDate" [ngModelOptions]="{ standalone: true }">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Selecione o Funcionário :</mat-label>
+        <select matNativeControl [(ngModel)]="selectedEmployee" name="employee">
+            <option *ngFor="let emp of employee" [ngValue]="emp">{{ emp.name }}</option>
+        </select>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Tipo de Lavação</mat-label>
+        <mat-select [(ngModel)]="selectedWashing" (ngModelChange)="onWashingTypeChange()" name="washingType">
+            <mat-option *ngFor="let washing of washes" [value]="washing">{{ washing }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Tipo de Veículo</mat-label>
+        <mat-select [(ngModel)]="selectedVehicle" (ngModelChange)="onVehicleTypeChange()" name="vehicleType">
+            <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">{{ vehicle }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Preço</mat-label>
+        <input matInput [(ngModel)]="selectedPrice" name="price" readonly>
+    </mat-form-field>
+
+    <br><br>
+    <mat-form-field>
+        <mat-label>Selecione o Cliente :</mat-label>
+        <select matNativeControl [(ngModel)]="selectedCustomer" name="customer">
+            <option *ngFor="let cust of customer" [ngValue]="cust">{{ cust.name }}</option>
+        </select>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput type="text" [value]="selectedCustomer?.typeCar" placeholder="Tipo de carro">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput type="text" [value]="selectedCustomer?.color" placeholder="Cor">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput type="text" [value]="selectedCustomer?.licensePlate" placeholder="Placa">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Observações :</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+</form>

@@ -6,41 +6,25 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 
-interface washing {
-  value: string;
-  viewValue: string;
-}
-
-interface auto {
-  valauto: string;
-  viewauto: string;
-}
-
-
 @Component({
   selector: 'app-washing',
   templateUrl: './washing.component.html',
   styleUrls: ['./washing.component.scss']
 })
 export class WashingComponent implements OnInit {
-  selectedWashing: string = '';
-  selectedAuto: string = '';
+  
+  washes: any[] = ['LAVAÇÃO SIMPLES', 'LAVAÇÃO PREMIUM'];
+  vehicles: any[] = ['CARRO', 'SUV', 'CAMIONETE', 'MOTO'];
+  prices: any = {};
+  datas: any[] = [];
 
-  washes: washing[] = [
-    { value: 'washing-0', viewValue: 'Lavação Simples' },
-    { value: 'washing-1', viewValue: 'Lavação Premium' },
-  ];
-
-  autos: auto[] = [
-    { valauto: 'auto-0', viewauto: 'Carro' },
-    { valauto: 'auto-1', viewauto: 'SUV' },
-    { valauto: 'auto-2', viewauto: 'Camionete' },
-    { valauto: 'auto-3', viewauto: 'Moto' },
-  ];
+  selectedWashing: any = null;
+  selectedVehicle: any = null;
+  selectedPrice: any = null;
 
   customer: any[] = [];
   employee: any[] = [];
-  priceSimple: any[] = [];
+  
 
   selectedCustomer: any = null;
   selectedEmployee: any = null;
@@ -49,13 +33,14 @@ export class WashingComponent implements OnInit {
   currentTime: string = '';
 
   constructor(private dataAccess: DataAccessService, private employessService: EmployeeService,
-    private washingServive: WashingService) {
+    private washingService: WashingService) {
     this.getCurrentTime();
   }
 
   getCurrentTime() {
     const now = new Date();
     this.currentDate = format(now, "dd/MM/yyyy HH:mm", { locale: ptBR });
+    console.log('currentDate:', this.currentDate);
   }
 
   ngOnInit(): void {
@@ -77,10 +62,38 @@ export class WashingComponent implements OnInit {
   }
 
   getAllPrices() {
-    this.washingServive.getAllItems().subscribe((data: any) => {
-      this.priceSimple = data;
-      console.log("Preços :", data)
+    this.washingService.getAllItems().subscribe((data: any) => {
+      this.datas = data;
+      this.populatePrices();
+      console.log("Preços :", data);
     });
+  }
+
+  populatePrices() {
+    this.prices = {};
+
+    for (const entry of this.datas) {
+      if (!this.prices[entry.formattedWashingType]) {
+        this.prices[entry.formattedWashingType] = {};
+      }
+      this.prices[entry.formattedWashingType][entry.formattedVehicleType] = entry.formattedPrice;
+    }
+  }
+
+  onWashingTypeChange() {
+    this.selectedVehicle = null;
+    this.selectedPrice = null;
+    console.log('Tipo de Lavação selecionado:', this.selectedWashing);
+  }
+  
+  onVehicleTypeChange() {
+    if (this.selectedWashing && this.selectedVehicle) {
+      this.selectedPrice = this.prices[this.selectedWashing][this.selectedVehicle];
+    } else {
+      this.selectedPrice = null;
+    }
+    console.log('Tipo de Veículo selecionado:', this.selectedVehicle);
+    console.log('Preço selecionado:', this.selectedPrice);
   }
 
   onCustomerSelected(customer: any) {

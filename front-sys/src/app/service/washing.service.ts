@@ -13,23 +13,23 @@ export class WashingService {
   constructor(private http: HttpClient) { }
 
   getAllItems() {
-    return this.http.get(`${this.baseUrl}/priceWashSimple/get`);
+    return this.http.get(`${this.baseUrl}/priceWashing/get`);
   }
 
   getItemById(id: number) {
-    return this.http.get(`${this.baseUrl}/priceWashSimple/${id}`);
+    return this.http.get(`${this.baseUrl}/priceWashing/${id}`);
   }
 
   createItem(item: any) {
-    return this.http.post(`${this.baseUrl}/priceWashSimple/save`, item);
+    return this.http.post(`${this.baseUrl}/priceWashing/save`, item);
   }
 
   updateItem(id: number, item: any) {
-    return this.http.put(`${this.baseUrl}/priceWashSimple/${id}`, item);
+    return this.http.put(`${this.baseUrl}/priceWashing/${id}`, item);
   }
 
   deleteItem(id: number) {
-    return this.http.delete(`${this.baseUrl}/priceWashSimple/${id}`);        
+    return this.http.delete(`${this.baseUrl}/priceWashing/${id}`);        
   }
 
 }

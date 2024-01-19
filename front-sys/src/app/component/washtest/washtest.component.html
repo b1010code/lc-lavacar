@@ -1,14 +1,21 @@
-<h2>Lavação Simples</h2>
-<mat-form-field>
-    <mat-label>Selecione o Automóvel :</mat-label>
-    <select matNativeControl [(ngModel)]="selectedService" name="autos">
-        <option *ngFor="let auto of autos" [ngValue]="auto">{{ auto.formattedVehicleType}}</option>
-    </select>
-</mat-form-field>
-<br>
-<mat-form-field>
-    <input matInput type="text" [value]="selectedService?.formattedPrice" placeholder="Preço">
-</mat-form-field>
-<br>
-
-<br>
+<form>
+    <mat-form-field>
+      <mat-label>Tipo de Lavação</mat-label>
+      <mat-select [(ngModel)]="selectedWashing" (ngModelChange)="onWashingTypeChange()" name="washingType">
+        <mat-option *ngFor="let washing of washes" [value]="washing">{{ washing }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Tipo de Veículo</mat-label>
+      <mat-select [(ngModel)]="selectedVehicle" (ngModelChange)="onVehicleTypeChange()" name="vehicleType">
+        <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">{{ vehicle }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Preço</mat-label>
+      <input matInput [(ngModel)]="selectedPrice" name="price" readonly>
+    </mat-form-field>
+  </form>
+  

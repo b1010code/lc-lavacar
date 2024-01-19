@@ -8,20 +8,53 @@ import { WashingService } from 'src/app/service/washing.service';
 })
 export class WashtestComponent implements OnInit {
 
-  autos: any[] = [];
+  washes: any[] = ['LAVAÇÃO SIMPLES', 'LAVAÇÃO PREMIUM'];
+  vehicles: any[] = ['CARRO', 'SUV', 'CAMIONETE', 'MOTO'];
+  prices: any = {};
+  datas: any[] = [];
 
-  selectedService: any = null;
+  selectedWashing: any = null;
+  selectedVehicle: any = null;
+  selectedPrice: any = null;
 
-  constructor( private washingServive: WashingService){}  
-  
+  constructor(private washingService: WashingService) {}
+
   ngOnInit(): void {
     this.getAllPrices();
   }
 
   getAllPrices() {
-    this.washingServive.getAllItems().subscribe((data: any) => {
-      this.autos = data;
-      console.log("Preços :", data)
+    this.washingService.getAllItems().subscribe((data: any) => {
+      this.datas = data;
+      this.populatePrices();
+      console.log("Preços :", data);
     });
+  }
+
+  populatePrices() {
+    this.prices = {};
+
+    for (const entry of this.datas) {
+      if (!this.prices[entry.formattedWashingType]) {
+        this.prices[entry.formattedWashingType] = {};
+      }
+      this.prices[entry.formattedWashingType][entry.formattedVehicleType] = entry.formattedPrice;
+    }
+  }
+
+  onWashingTypeChange() {
+    this.selectedVehicle = null;
+    this.selectedPrice = null;
+    console.log('Tipo de Lavação selecionado:', this.selectedWashing);
+  }
+  
+  onVehicleTypeChange() {
+    if (this.selectedWashing && this.selectedVehicle) {
+      this.selectedPrice = this.prices[this.selectedWashing][this.selectedVehicle];
+    } else {
+      this.selectedPrice = null;
+    }
+    console.log('Tipo de Veículo selecionado:', this.selectedVehicle);
+    console.log('Preço selecionado:', this.selectedPrice);
   }
 }
